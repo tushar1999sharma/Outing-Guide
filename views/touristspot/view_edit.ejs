@@ -1,0 +1,34 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+  <div class="form group-row">
+    <h1 style="text-align: center;">Edit <%= spot.name %></h1>
+    <div style="width: 30%; margin: 25px auto;">
+      <form action="/spots/<%=spot._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input class="form-control" id="name" type="text" name="name" value="<%= spot.name %>">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input class="form-control" id="city" type="text" name="city" value="<%= spot.city %>">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input class="form-control" id="description" type="text" name="description" value="<%= spot.description %>">
+        </div>
+        <div class="form-group">
+          <label for="image">Image</label>
+          <br>
+          <input type="file" id="image" name="image" accept="image/*" value="<%= spot.image %>>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+        </div>
+      </form>
+      <a href="/spots">Go Back</a>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>

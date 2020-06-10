@@ -1,0 +1,111 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-8 show-col-8">
+      <div class="card" id="spot_card">
+        <img class="card-img-top" src="<%= spot.image %>">
+        <div class="card-body">
+          <div class="figure-caption-full">
+              <% if (spot.reviews.length == 0) { %>
+                <p class="float-right text-muted">No Rating Yet</p>
+              <% } else { %>
+                <p class="float-right">
+                  <% var i; %>
+                  <% for(var i = 1; i <= spot.rating; i++){ %>
+                    <span class="fas fa-star checked"></span>
+                  <% } %>
+                  <% if((i - spot.rating) != 1){ i++; %>
+                    <span class="fas fa-star-half-alt checked"></span>
+                  <% } %>
+                  <span class="text-muted"> <%= spot.rating %> (<%= spot.reviews.length %>)</span>
+                </p>
+              <% } %>
+            <h4 class="card-title"> 
+              <a href=""> <%= spot.name %> </a> 
+              <small class="text-muted fas fa-map-marker-alt"> <%= spot.city %> </small>
+            </h4>
+            <p class="card-text"> <%= spot.description %> </p>
+            <p class="card-text inline"> 
+              <em class="float-right"> Submitted by:- <a href="/user/<%= spot.author.id %>"> <%= spot.author.username %> </a> , <%= moment(spot.createdAt).fromNow() %> </em>
+              <form class="float-left" action="/spots/<%= spot._id %>" method="POST">
+                <label for="rate">Rate: </label>
+                <input id="rate" name="review[rating]" type="number" step="0.1" min="1" max="5">
+              </form>  
+              <div class="float-right rater">                
+              </div>
+            </p>
+            <br>
+            <% if(currentUser && spot.author.id.equals(currentUser._id)){ %>
+              <div class="inline float-right">
+                <form id="edSpot" action="/spots/<%= spot._id %>?_method=DELETE" method="POST">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button class="btn btn-sm btn-danger">Delete</button> 
+                </form>
+                <a id = "edSpot" class="btn btn-sm btn-warning" href="/spots/<%= spot._id %>/edit"> Edit </a>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="card bg-light" id="comment_card">
+        <div class="card-body">
+          <div class="float-right">
+            <a class="btn btn-primary" href="/spots/<%= spot._id %>/comments/new" role="button">ADD COMMENT</a>
+          </div>
+          <h3 class="card-title">COMMENTS</h3>
+          <hr>
+          <% spot.comments.forEach(function(comment){ %> 
+            <div class="row">
+              <div class="col-md-12">
+                <strong> <span style="font-style: italic;"> <%= comment.author.username %> </span> </strong>
+                <span class="float-right"><%= moment(comment.createdAt).fromNow() %></span>
+                <p> <%= comment.text %> </p>
+                <% if(currentUser &&  comment.author.id.equals(currentUser._id)) { %> 
+                  <a href="/spots/<%= spot._id %>/comments/<%= comment._id %>/edit">
+                    <button class="btn btn-sm btn-warning">Edit</button>
+                  </a>
+                  <form id="deleteComment" action="/spots/<%= spot._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-sm btn-danger">Delete</button> 
+                  </form>
+                <% } %> 
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>            
+    </div>
+    <div class="col-md-4 show-col-4">
+      <div class="list-group">
+        <% var count = 0; %>
+        <% for(var allspot of allSpot){ %>
+          <% if(count >= 10) { %>
+            <% break; %>
+          <% } %>
+          <% if(allspot._id == spot.id) { %>
+            <% continue; %>
+          <% } %>
+          <li class="list-group-item spot-list">
+            <div class="media ">
+              <div class="media-left">
+                <img class="media-object sideshow-image" src="<%= allspot.image %>" alt="...">
+              </div>
+              <div class="media-body">
+                <h6 class="media-heading"><a href="/spots/<%= allspot._id %>"><%= allspot.name %></a></h6>
+                <span class="short-side-description">
+                  <%- allspot.description.substring(0, 55) %>
+                </span>
+              </div>
+            </div>
+          </li>
+          <% count++; %>
+        <% } %>
+      </div>    
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>

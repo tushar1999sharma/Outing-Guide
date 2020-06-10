@@ -1,0 +1,23 @@
+<%- include("../partials/header.ejs") %>
+
+<div class="container">
+  <h1 style="text-align: center;">Notifications</h1>
+  <ul class="list-all-notification">
+    <% allNotifications.forEach(function(notification) { %>
+      <a href="/user/notification/<%= notification.id %>">
+        <!-- <i class="fas fa-bell mr-2" aria-hidden="true"></i> -->
+        <img class="all-notification-avatar" src="<%= notification.avatar %>"> &nbsp; &nbsp;
+        <span>
+          <% if(notification.spotId){ %>
+            <%= notification.username %> created a new Post
+          <% } else { %>
+            <%= notification.username %> started following you
+          <% } %>
+        </span>
+        <hr>
+      </a>
+    <% }); %>
+  </ul>
+</div>
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,51 @@
+<%- include("../partials/header.ejs") %>
+
+<div class = "container">
+  <!-- JUMBOTRON -->
+  <div class="jumbotron jumbotron-fluid bg-dark">
+    <div class="jumbotron-background">
+      <img src="https://placeimg.com/2000/1000/nature" class="blur ">
+    </div>
+    <div class="container text-white">
+      <h1 class="display-4">Welcome To Outing Guide</h1>
+      <p class="lead">View our handpicked Tourist Spots from all over the world.</p>
+      <a class="btn btn-primary btn-large" href="/spots/new">Add New Tourist Spot</a>
+    </div>    
+  </div>
+  <div class="row">
+    <% spots.forEach(function(spot){ %>
+      <div class="col-lg-4 col-sm-6">
+        <div class="card booking-card">
+          <div class="view overlay">
+            <img id="indexcardimage" class="card-img-top" src="<%= spot.image %>" alt="Card image cap">
+          </div>
+          <div class="card-body">
+            <h4 class="card-title font-weight-bold"><a><%= spot.name %></a></h4>
+            <ul class="list-unstyled list-inline rating mb-0">
+              <% if (spot.reviews.length == 0) { %>
+                <li class="list-inline-item"><p class="text-muted">No Rating Yet</p></li>
+              <% } else { %>
+                <p>
+                  <% var i; %>
+                  <% for(i = 1; i <= spot.rating; i++){ %>
+                    <span class="fas fa-star checked"></span>
+                  <% } %>
+                  <% if((i - spot.rating) != 1){ i++; %>
+                    <span class="fas fa-star-half-alt checked"></span>
+                  <% } %>
+                  <span class="text-muted"> <%= spot.rating %> (<%= spot.reviews.length %>)</span>
+                </p>
+              <% } %>
+            </ul>
+            <p class="card-text"><%- spot.description.substring(0, 70) %></p>
+            <a href="/spots/<%= spot._id %>" class="btn btn-success ">More info</a>
+          </div>
+        </div>
+      </div> 
+    <% })%>   
+  </div>
+
+  <a href="/">Back to home</a> 
+</div>
+
+<%- include("../partials/footer") %>

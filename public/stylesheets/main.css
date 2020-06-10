@@ -1,0 +1,95 @@
+/* Navbar */
+.notifyme {
+    cursor: pointer;
+}
+
+/* Jumbotron */
+.jumbotron {
+    position: relative;
+    overflow: hidden;
+  }
+  
+.jumbotron .container {
+    position: relative;
+    z-index: 2;
+    
+    /* background: rgba(0,0,0,0.2); */
+    padding: 2rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+  
+.jumbotron-background {
+    object-fit: cover;
+    font-family: 'object-fit: cover;';
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+  
+img.blur {
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
+  
+}
+
+/* Index */
+#indexcardimage {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.checked {
+    color: orange;
+}
+
+/* Show Tourist Spot */
+.sideshow-image {
+    width: 110px;
+    height: 80px;
+    margin-right: 10px;
+}
+.spot-list {
+    padding-left: 0%;
+    padding-right: 0%;
+}
+.show-col-4 {
+    padding-right: 0%;
+    padding-left: 10px;
+}
+.show-col-8 {
+    padding-right: 10px;
+    padding-left: 0%;
+}
+
+/* Button */
+#edSpot{
+    display: inline;
+}
+
+#deleteComment{
+    display: inline;
+}
+
+/* Notification */
+.notification-avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 45%;
+}
+.all-notification-avatar {
+    vertical-align: middle;
+    width: 80px;
+    height: 75px;
+    border-radius: 50%;
+}
+.list-all-notification{
+    padding-left: 333px;
+    padding-right: 333px;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js'></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+  <title>Outing Guide</title>
+</head>
+<body>
+<nav class="navbar transparent navbar-expand-lg navbar-light bg-light">
+  
+  <a href="/" class="navbar-brand"><i class="fas fa-plane-departure"></i> Outing Guide</a>
+  <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="/spots">Home</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+      <form action="/spots" class="navbar-form" role="search" method="GET">
+        <div class="input-group" style="width: 100%">
+          <input type="text" class="form-control" placeholder="Search" name="search" id="srch-term-header">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><span class="fas fa-search"></span></button>
+          </div>
+        </div>
+      </form>
+      <% if(!currentUser){ %>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Sign up</a>
+        </li>
+      <% } else { %>
+        <li class="nav-item dropdown notifications-nav">
+          <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if(userNotifications.length > 0){ %>
+              <span class="badge badge-danger"><%= userNotifications.length %></span> 
+            <% } %>
+            <span class="d-none d-md-inline-block notifyme"> <i class="fas fa-bell"></i> Notifications</span>
+          </a>
+          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+            <% userNotifications.forEach(function(notification) { %>    
+              <a class="dropdown-item" href="/user/notification/<%= notification.id %>">
+                <!-- <i class="fas fa-bell mr-2" aria-hidden="true"></i> -->
+                <img class="notification-avatar" src="<%= notification.avatar %>" >
+                <span>
+                  <% if(notification.spotId){ %>
+                    <%= notification.username %> created a new Post
+                  <% } else { %>
+                    <%= notification.username %> started following you
+                  <% } %>
+                </span>
+                <hr>
+                <!-- <span class="float-right"><i class="far fa-clock" aria-hidden="true"></i> 13 min</span> -->
+              </a>
+            <% }); %>
+            <a class="dropdown-item" href="/user/notification/all">
+              <i class="fas fa-bell mr-2" aria-hidden="true"></i>
+              <span>View past notifications</span>
+            </a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/<%= currentUser._id %>"> <%= currentUser.username %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <% if(success && success.length > 0) { %>
+    <div class="alert alert-success" role="alert">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error && error.length > 0) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% } %>
+</div>
