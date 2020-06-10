@@ -99,55 +99,6 @@ CLOUDINARY_API_SECRET='cloudinary api secret'
 * Moment js is used to evaluate time of post and comment from current time.
 
 * Avatar image and all image posted by users are uploaded on cloudinary.
-  
-
-## Server Routes
-
-  
-
-*  `{baseURL}/spots`
-
-	* This will show all available posts
-
-
-*  `{baseURL}/login`
-
-	* If the Host is logged in, then this will redirect to `/spot`.
-
-	* Login form will be rendered using the GET method of request.
-
-	* Login form will be submitted and validated using the Post method of request.
-	
-	
-*  `{baseURL}/register`
-
-	* If the Host is logged in, then this will redirect to `/home`.
-
-	* Register form will be rendered using the GET method of request.
-
-	* Register form will be submitted and validated using the Post method of request.
-	
-	*   We use Mongoose Local Strategy for authentication 
-  
-  
-*  `{baseURL}/logout`
-
-	 * If the Host is logged in, then this will logout host and redirect to `/spot`.
-
-	* If the Host is logged off, then this will redirect to `/spot`.
-
-
-*  `{baseURL}/checkin`
-
-  
-
-* If the Host is logged in, then this will redirect to `/home`.
-
-* Check In form will be rendered using the GET method of request.
-
-* Check In form will be submitted and validated using the Post method of request.
-
-* Email and Sms will be sent through flask-mail and Twilio services.
 
   
 
