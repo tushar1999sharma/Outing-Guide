@@ -27,11 +27,8 @@
 - Clone the repository using `git clone` and then change the directory to root of the project
 
 ```
-
 git clone 
-
 cd Outing-guide
-
 ```
 - Install [mongodb](https://www.mongodb.com/)
 
@@ -43,9 +40,7 @@ cd Outing-guide
 - Use npm to install dependencies for the project.
 
 ```
-
 > npm install
-
 ```
 
 - Create .env file in root folder and add necessary credentials with variables given below.
@@ -60,9 +55,7 @@ CLOUDINARY_API_SECRET='cloudinary api secret'
 - Run the program 
 
 ```
-
 > node app.js
-
 ```
 
 - Now navigate to http://localhost:3000
@@ -101,11 +94,11 @@ CLOUDINARY_API_SECRET='cloudinary api secret'
 
 * User will get in app notification whenever someone follow them or user they are following post new blog.
 
-*  User can search post with post name or city name.
+* User can search post with post name or city name.
 
 * Moment js is used to evaluate time of post and comment from current time.
 
-*   Avatar image and image with blogs are uploaded on cloudinary.
+* Avatar image and all image posted by users are uploaded on cloudinary.
   
 
 ## Server Routes
@@ -155,24 +148,6 @@ CLOUDINARY_API_SECRET='cloudinary api secret'
 * Check In form will be submitted and validated using the Post method of request.
 
 * Email and Sms will be sent through flask-mail and Twilio services.
-
-  
-
-*  `{baseURL}/checkout`
-
-  
-
-* If the Host is logged in, then this will redirect to `/home`.
-
-* Check Out form will be rendered using the GET method of request.
-
-* Check Out form will be submitted and validated using the Post method of request.
-
-* Email and Sms will be sent through flask-mail and Twilio services.
-
-  
-
-
 
   
 
