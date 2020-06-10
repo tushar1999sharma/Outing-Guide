@@ -47,6 +47,7 @@ cd Outing-guide
 
 ```bash
 
+CLOUD_NAME='cloudinary cloud name'
 CLOUDINARY_API_KEY='cloudinary api key'
 CLOUDINARY_API_SECRET='cloudinary api secret'
 
