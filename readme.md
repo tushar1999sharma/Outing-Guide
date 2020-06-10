@@ -108,46 +108,4 @@ CLOUDINARY_API_SECRET='cloudinary api secret'
 
 > Home Page
 
-  
-
 ![ScreenShot](/screenshots/home.png)
-
-  
-
-> Check-In Page (Available hosts can be selected from the dropdown)
-
-  
-
-![ScreenShot](/screenshots/visitor_checkin.png)
-
-  
-
-> Check-Out Page
-
-  
-
-![ScreenShot](/screenshots/visitor_checkout.png)
-
-  
-
-> Host Login Page
-
-  
-
-![ScreenShot](/screenshots/host_login.png)
-
-  
-
-> Host Register Page
-
-  
-
-![ScreenShot](/screenshots/host_register.png)
-
-  
-
-> Visitor Details Page (the host can see details of his current and past visitors)
-
-  
-
-![ScreenShot](/screenshots/visitors_details.png)
