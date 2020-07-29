@@ -29,14 +29,15 @@ app.use(express.static("public")); //express.static() takes a path and returns a
 app.use(bodyParser.urlencoded({extended: true})); //use body parser
 app.use(methodOverride("_method")); //use method override
 app.use(flash()); //use flash
-app.set("view engine","ejs"); //set view enginw
+app.set("view engine","ejs"); //set view engine
 
-//PASSPORT CONFIGURATION
 app.use(require("express-session")({
     secret: "Tushar Sharma is the best",
     resave: false,
     saveUninitialized: false
 }));
+
+//PASSPORT CONFIGURATION
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate())); //passport authenticate middleware
