@@ -21,8 +21,9 @@ const commentRoutes         = require("./routes/route_comment"),
     authRoutes              = require("./routes/route_authentication"),
     userRoutes              = require("./routes/route_user");
 
+const PORT                  = process.env.PORT || 3000;
 //connect with database
-mongoose.connect('mongodb://localhost:27017/outingGuide', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/outingGuide', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true});
 
 //app.use() loads a function to be used as middleware
 app.use(express.static("public")); //express.static() takes a path and returns a middleware that use all files in that path
@@ -71,6 +72,6 @@ app.use(authRoutes);
 app.use("/user/", userRoutes);
 
 //Listen 
-app.listen(3000, function(){
+app.listen(PORT, function(){
     console.log("Outing Guide server has started!");
 });
