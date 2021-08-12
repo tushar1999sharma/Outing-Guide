@@ -9,8 +9,8 @@ module.exports = {
             //get all tourist spot from db with given search
             const regex = new RegExp(escapeRegex(req.query.search), 'gi'); //create regex
             try {
-                let allSpot = TouristSpot.find({$or: [{name: regex}, {city: regex}]}); //find with regex
-                if(allspot.length == 0){
+                let allSpot = await TouristSpot.find({$or: [{name: regex}, {city: regex}]}); //find with regex
+                if(allSpot.length == 0){
                     req.flash("error", "OOPS!! no result found");
                     res.redirect("/spots");
                 }
@@ -73,7 +73,8 @@ module.exports = {
         }
         catch (err) {
             req.flash("error", "Can't upload image, try again later.");
-            req.redirect("back");
+            console.log(err)
+            res.redirect("/spots");
         }
     },
 
